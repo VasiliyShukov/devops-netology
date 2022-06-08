@@ -1,5 +1,19 @@
-#!/usr/bin/env bash
+local k = (import 'ksonnet-util/kausal.libsonnet');
 
-STUDENT_NAME="ShukovVV"
+{
+  _config:: {
+    name: 'change_me',
+    namespace: std.extVar('qbec.io/defaultNs'),
 
-echo "my name in ${STUDENT_NAME}"
+    container: {
+      requests: { cpu: '10m', memory: '100Mi' },
+      limits: { cpu: '200m', memory: '200Mi' },
+    },
+  },
+
+  local serviceAccount = k.core.v1.serviceAccount,
+
+  serviceAccount:
+    serviceAccount.new($._config.name) +
+    serviceAccount.mixin.metadata.withNamespace($._config.namespace),
+}
