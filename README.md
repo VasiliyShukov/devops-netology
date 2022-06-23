@@ -3,10 +3,5 @@
 
 <#
 .GitIgnore
-*.tfvars
-*.tfvars.json
-*_override.tf
-*_override.tf.json
-.terraformrc
-terraform.rc
+Будут игнорироваться файлы override files и CLI configuration files
 #>
