@@ -8,3 +8,5 @@ override.tf.json. Имена .terraformrc и
 terraform.rc
 
 #>
+
+Задание 2
