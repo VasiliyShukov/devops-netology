@@ -93,6 +93,8 @@ then
 fi
 done
 done
+
+
 ---
 ## Задание 4
 
