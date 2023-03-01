@@ -1,0 +1,64 @@
+Задача 1  
+Опишите своими словами основные преимущества применения на практике IaaC паттернов.  
+Ответ:  
+ -Ускорение производства и вывода продукта на рынок  
+ -Стабильность среды, устранение дрейфа конфигураций  
+ -Более быстрая и эффективная разработка  
+Какой из принципов IaaC является основополагающим?  
+Ответ:  
+ -Инфраструктура как код  
+
+Задача 2  
+Чем Ansible выгодно отличается от других систем управление конфигурациями?  
+Ответ:  
+ Большое количество модулей  
+ Не требует Агентов  
+Какой, на ваш взгляд, метод работы систем конфигурации более надёжный push или pull?  
+Ответ:  
+  
+Задача 3  
+Установить на личный компьютер:  
+  
+VirtualBox  
+Vagrant  
+Terraform  
+Ansible  
+Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.  
+Ответ:  
+terraform  
+ sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+ sudo  apt update &&  sudo  apt  install terraform  
+ snec@server://home/snec/vagrant$ terraform --version
+Terraform v1.3.9
+on linux_amd64
+
+Ansible  
+sudo apt install ansible  
+	snec@server://home/snec/vagrant$ ansible --version
+ansible 2.9.6
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/snec/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.8.10 (default, Nov 14 2022, 12:59:47) [GCC 9.4.0]
+Задача 4  
+Воспроизвести практическую часть лекции самостоятельно.  
+  
+Создать виртуальную машину.  
+Зайти внутрь ВМ, убедиться, что Docker установлен с помощью команды  
+docker ps  
+vagrant@server1:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+Vagrantfile из лекции и код ansible находятся в папке.  
+  
+Примечание! Если Vagrant выдает вам ошибку:  
+  
+URL: ["https://vagrantcloud.com/bento/ubuntu-20.04"]     
+Error: The requested URL returned error: 404:
+Выполните следующие действия:
+
+Скачайте с сайта файл-образ "bento/ubuntu-20.04"
+Добавьте его в список образов Vagrant: "vagrant box add bento/ubuntu-20.04 <путь к файлу>"
