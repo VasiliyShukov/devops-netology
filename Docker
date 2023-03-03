@@ -1,0 +1,89 @@
+Задача 1  
+Сценарий выполнения задачи:  
+  
+создайте свой репозиторий на https://hub.docker.com;  
+выберите любой образ, который содержит веб-сервер Nginx;  
+создайте свой fork образа;  
+реализуйте функциональность: запуск веб-сервера в фоне с индекс-страницей, содержащей HTML-код ниже:  
+<html>  
+<head>  
+Hey, Netology  
+</head>  
+<body>  
+<h1>I’m DevOps Engineer!</h1>  
+</body>  
+</html>  
+Опубликуйте созданный fork в своём репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.  
+  Ответ:   
+  https://hub.docker.com/layers/snecshukov/netolnginx/0.0.6/images/sha256-f48884c15fd100838b128d66339113791c1d009d0ffa10a5142fcd8f42b5a2fb?context=repo  
+
+Задача 2  
+Посмотрите на сценарий ниже и ответьте на вопрос: «Подходит ли в этом сценарии использование Docker-контейнеров или лучше подойдёт виртуальная машина, физическая машина? Может быть, возможны разные варианты?»  
+  
+Детально опишите и обоснуйте свой выбор.  
+  
+--  
+  
+Сценарий:  
+  
+высоконагруженное монолитное Java веб-приложение;  
+    Можно использовать физический сервер или паравиртуализацию. Docker не подойдет, так как предполагает запуск одного сервиса в одном контейнере.  
+Nodejs веб-приложение;   
+    Docker    
+мобильное приложение c версиями для Android и iOS;  
+    Для чего, для тестирования? Наверное либо физический либо паравиртуализация   
+шина данных на базе Apache Kafka;  
+    Docker  
+Elasticsearch-кластер для реализации логирования продуктивного веб-приложения — три ноды elasticsearch, два logstash и две ноды kibana;  
+    Можно реализвать в Docker  
+мониторинг-стек на базе Prometheus и Grafana;  
+    Можно реализвать в Docker  
+MongoDB как основное хранилище данных для Java-приложения;
+    Можно использовать любой вариант  
+Gitlab-сервер для реализации CI/CD-процессов и приватный (закрытый) Docker Registry.  
+    Паравиртуализация, физ сервер  
+Задача 3  
+Запустите первый контейнер из образа centos c любым тегом в фоновом режиме, подключив папку /data из текущей рабочей директории на хостовой машине в /data контейнера.  
+Запустите второй контейнер из образа debian в фоновом режиме, подключив папку /data из текущей рабочей директории на хостовой машине в /data контейнера.  
+Подключитесь к первому контейнеру с помощью docker exec и создайте текстовый файл любого содержания в /data.  
+Добавьте ещё один файл в папку /data на хостовой машине.  
+Подключитесь во второй контейнер и отобразите листинг и содержание файлов в /data контейнера.  
+    Ответ:  
+      snec@server:~$ docker exec -it condescending_hawking bash  
+        root@fec564bd0364:/# cd /usr/share/data/  
+        root@fec564bd0364:/usr/share/data# ls    
+            cent  host  
+        root@fec564bd0364:/usr/share/data# touch deb  
+        root@fec564bd0364:/usr/share/data# ls  
+            cent  deb  host  
+        root@fec564bd0364:/usr/share/data# ls -lah /  
+total 76K  
+drwxr-xr-x   1 root root 4.0K Mar  3 12:58 .  
+drwxr-xr-x   1 root root 4.0K Mar  3 12:58 ..  
+-rwxr-xr-x   1 root root    0 Mar  3 12:58 .dockerenv  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 bin  
+drwxr-xr-x   2 root root 4.0K Dec  9 19:15 boot  
+drwxr-xr-x   5 root root  360 Mar  3 12:58 dev  
+drwxr-xr-x   1 root root 4.0K Mar  3 12:58 etc  
+drwxr-xr-x   2 root root 4.0K Dec  9 19:15 home  
+drwxr-xr-x   8 root root 4.0K Feb 27 00:00 lib  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 lib64  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 media  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 mnt  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 opt  
+dr-xr-xr-x 439 root root    0 Mar  3 12:58 proc   
+drwx------   2 root root 4.0K Feb 27 00:00 root  
+drwxr-xr-x   3 root root 4.0K Feb 27 00:00 run  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 sbin  
+drwxr-xr-x   2 root root 4.0K Feb 27 00:00 srv  
+dr-xr-xr-x  13 root root    0 Mar  3 12:58 sys  
+drwxrwxrwt   2 root root 4.0K Feb 27 00:00 tmp  
+drwxr-xr-x   1 root root 4.0K Feb 27 00:00 usr  
+drwxr-xr-x  11 root root 4.0K Feb 27 00:00 var  
+  
+
+Задача 4 (*)
+Воспроизведите практическую часть лекции самостоятельно.
+
+Соберите Docker-образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.
+
