@@ -2,7 +2,7 @@
 https://hub.docker.com/layers/snecshukov/custom-nginx/1.0.0/images/sha256-7ffa153aa764096f5a4897c783671446a4f48569352abc2450c12fb83a06ac15?tab=layers
 Задание 3
 1. Непонятно почему выключается контейнер. Возможно потому что ctrl+c выключает единтвенный терминал
-10-11. Проброс порта настроен с 80 на 80. В контейнере сервер повесили на 81 порт, на него проброс не включен. Что бы заработало, требуется запустить контейнер как -p 80:81
+10-11. Проброс порта настроен с 80 на 80. В контейнере сервер повесили на 81 порт, на него проброс не включен. Что бы заработало, требуется запустить контейнер как -p 80:81  
 	sudo docker commit a0e11d31d8f8
 	sha256:364ccd7db7adfbc749bf36ce83503e3dcc1ee5942dc009a7d153ebe75c3115b7
 	vagrant@server1:~$ sudo docker images
@@ -20,25 +20,19 @@ https://hub.docker.com/layers/snecshukov/custom-nginx/1.0.0/images/sha256-7ffa15
 	<body>
 	<h1>I will be DevOps Engineer!</h1>
 	</body>
-Задание 4
-Почему то не стартуют контейнеры debian и centos. Нет ошибок, логов и тд.
-	vagrant@server1:~$ sudo docker images
-	REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-	debian       latest    52f537fe0336   13 days ago   117MB
-	vagrant@server1:~$ sudo docker run -d -v $(pwd):\data debian
-	docker: Error response from daemon: invalid volume specification: '/home/vagrant:data': invalid mount config for type "bind": invalid mount path: 'data' mount path must be absolute.
-	See 'docker run --help'.
-	vagrant@server1:~$ sudo docker run -d -v $(pwd):/data debian
-	74915fc60e221adea8e76afeb3cc6c620157821bd972b0456d166f22b55c35fd
-	vagrant@server1:~$ sudo docker ps
-	CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-	vagrant@server1:~$ sudo docker ps -a
-	CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS                       PORTS     NAMES
-	74915fc60e22   debian    "bash"    12 seconds ago   Exited (0) 11 seconds ago              laughing_noyce
-	c2afba305ca5   debian    "bash"    2 minutes ago    Exited (0) 2 minutes ago               affectionate_poitras
-	af5db61ed95a   debian    "bash"    5 minutes ago    Exited (0) 5 minutes ago               jovial_nightingale
-	8054751bb6f5   debian    "bash"    5 minutes ago    Exited (0) 5 minutes ago               objective_meninsky
-	4eec4e2388ed   debian    "bash"    7 minutes ago    Exited (0) 7 minutes ago               goofy_lederberg
-	e97aed7057af   debian    "bash"    8 minutes ago    Exited (130) 8 minutes ago             crazy_perlman
-	fb7979f7c1b2   debian    "bash"    9 minutes ago    Exited (0) 9 minutes ago               heuristic_murdock
-	vagrant@server1:~$
+Задание 5
+1-2. Если оба файла существуют, Compose предпочитает канонический compose.yaml
+		Но команда docker compose up -d, запустит именно docker-compose.yaml
+		Что бы запускались оба, надо сделать конфиг docker-compose.yaml таким
+		version: "3"
+		services:
+		registry:
+		image: registry:2
+		network_mode: host
+		ports:
+			- "5000:5000"
+		include:
+			- compose.yaml
+7.Если удалить файл docker-compose.yaml и выполнить команду docker-compose up -d, то будет выведено предупреждение о том, что файл конфигурации не найден
+
+sudo docker compose down
