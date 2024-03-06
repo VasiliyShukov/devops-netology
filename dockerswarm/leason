@@ -1,0 +1,15 @@
+root@dockerswarm:~#  docker node ls
+ID                            HOSTNAME      STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+xq8rx7ns1ippi2rxp14xhe4g3     dockernode1   Ready     Active                          24.0.5
+jtof8x6byqoo27smyouaorxti     dockernode2   Ready     Active                          24.0.5
+vm5gjn81ae5cmcytfju32f8sa *   dockerswarm   Ready     Active         Leader           24.0.5
+root@dockerswarm:~# history
+    1  yum update
+    2  apt update
+    3  apt upgrade
+    4  apt install docker
+    5  docker swarm init
+    6  apt  install docker.io
+    7  docker swarm init
+    8  history
+root@dockerswarm:~#
