@@ -42,6 +42,8 @@ version: "3"
 		include:
 			- compose.yaml
 ```
+3.
+![Image alt](./5.3.jpg)  
 7.Если удалить файл docker-compose.yaml и выполнить команду docker-compose up -d, то будет выведено предупреждение о том, что файл конфигурации не найден
 выключить можно 
 ```
